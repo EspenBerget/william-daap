@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitasjon til Dåp</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
+
+        :root {
+            --card-width: 500px;
+            --card-height: 750px;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .scene {
+            width: var(--card-width);
+            max-width: 90vw;
+            height: var(--card-height);
+            perspective: 1500px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+            cursor: pointer;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .card__face--front {
+            background-color: #ffffff;
+            color: #5C6A79;
+            text-align: center;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card__face--back {
+            background-color: #ffffff;
+            transform: rotateY(180deg);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
+            align-content: center;
+        }
+
+        .card__face--back img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #f0f4f8;
+        }
+        
+        .photos-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #334257;
+            margin-bottom: 10px;
+        }
+
+        .cc {
+            font-family: monospace;
+            font-style: italic;
+            font-size: 10px;
+            position: absolute;
+            bottom: 0px;
+            left: 15px;
+        }
+
+        /* Shared content styles */
+        .icon { font-size: 3rem; color: #a9c2e0; margin-bottom: 15px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 0 0 10px 0; color: #334257; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #334257; margin: 15px 0; }
+        .subtitle { font-size: 1.1rem; margin-bottom: 15px; color: #788a9e; }
+        .details p { margin: 8px 0; line-height: 1.6; font-size: 0.90rem; }
+        strong { font-weight: 600; color: #4A5568; }
+        .event-details { margin: 20px 0; padding: 15px; background-color: #f9fafb; border-radius: 10px; border-left: 4px solid #a9c2e0; width: 100%; }
+        .footer { font-size: 0.85rem; color: #90a0b7; margin-top: 15px; }
+        .click-to-open { font-weight: 500; color: #a9c2e0; margin-top: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="scene" id="cardScene">
+        <div class="card" id="card">
+            <div class="card__face card__face--front">
+                <div class="icon">🕊️</div>
+                <h1>Du er invitert!</h1>
+                <p class="subtitle">til dåp av</p>
+                
+                <h2>William Stølevik-Berget</h2>
+                
+                <p class="details">
+                    Bli med oss på feiring av William.
+                </p>
+                
+                <div class="event-details">
+                    <p><strong>Dato:</strong> Søndag, 7 desember</p>
+                    <p><strong>Tid:</strong> 11:00</p>
+                    <p><strong>Sted:</strong> Bryn Kirke, Økriveien 5</p>
+                </div>
+                
+                <p class="details">
+                    En liten samling følger etterpå hos Bente & Alf Inge på Bryn skolevei 10.
+                </p>
+
+                <div class="footer">
+                    Vi gleder oss til å tilbringe dagen med dere.
+                </div>
+
+                <p class="click-to-open">Klikk for å åpne</p>
+            </div>
+            <div class="card__face card__face--back">
+                <h3 class="photos-title">Vårt lille mirakel</h3>
+                <img src="images/william_modell.jpeg" alt="William 1">
+                <img src="images/william_i_hender.jpeg" alt="William 2">
+                <img src="images/william_lue.jpeg" alt="William 3">
+                <img src="images/william_i_bilsete.jpeg" alt="William 4">
+                <span class="cc">Bilde 2, Copyright © 2025 Gullungene fotograf</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('card');
+        card.addEventListener('click', function() {
+            card.classList.toggle('is-flipped');
+        });
+    </script>
+
+</body>
+</html>
